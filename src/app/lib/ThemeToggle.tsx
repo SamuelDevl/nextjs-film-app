@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(false);
@@ -17,9 +18,10 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => setDark(!dark)}
-      className="px-4 py-2 rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white"
+      aria-label="Přepnout téma"
+      className="p-2 rounded-md bg-background hover:bg-accent transition-colors"
     >
-      {dark ? "☀️ Světlý" : "🌙 Tmavý"}
+      {dark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-blue-600" />}
     </button>
   );
 }

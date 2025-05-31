@@ -25,30 +25,36 @@ export default function FilmSlider({ films }: Props) {
   return (
     <div className="w-full flex flex-col items-center">
       {/* SLIDER */}
-      <div ref={sliderRef} className="keen-slider max-w-7xl w-full px-4">
+      <div
+        ref={sliderRef}
+        className="keen-slider max-w-7xl w-full px-0 overflow-hidden"
+      >
         {films.map((film) => (
           <div
             key={film.id}
-            className="keen-slider__slide relative h-[500px] flex items-center justify-center overflow-hidden rounded-lg"
+            className="keen-slider__slide relative h-[500px] flex items-center justify-start"
           >
-            {/* Background image */}
+            {/* Obrázek jako pozadí bez oříznutí */}
             <img
               src={`https://image.tmdb.org/t/p/original${film.backdrop_path}`}
               alt={film.title}
-              className="absolute inset-0 w-full h-full object-cover brightness-85 transition-transform duration-300"
+              className="absolute inset-0 w-full h-full object-cover object-right z-0"
+              draggable={false}
             />
 
-            {/* Text overlay */}
-            <div className="relative z-10 text-white text-center max-w-3xl px-4 font-quicksand">
-              <h2 className="text-3xl md:text-5xl font-oswald font-bold mb-4">
+            {/* Gradient zleva do transparentna */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent z-10" />
+
+            {/* Textová část vlevo */}
+            <div className="relative z-20 w-[35%] pl-12 text-white">
+              <h2 className="text-4xl md:text-5xl font-oswald font-bold mb-4">
                 {film.title}
               </h2>
-              <p className="text-sm text-gray-200 mb-2">{film.release_date}</p>
-              <p className="text-md md:text-lg line-clamp-3">{film.overview}</p>
+              <p className="text-sm text-gray-300 mb-2">{film.release_date}</p>
+              <p className="text-md md:text-lg line-clamp-4 font-quicksand">
+                {film.overview}
+              </p>
             </div>
-
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/40 z-0" />
           </div>
         ))}
       </div>

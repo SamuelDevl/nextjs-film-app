@@ -13,6 +13,8 @@ module.exports = {
         dmsans: ["var(--font-dmsans)", "sans-serif"],
         quicksand: ["var(--font-quicksand)", "sans-serif"],
         marker: ["var(--font-marker)", "cursive"],
+        geist: ["var(--font-geist)", "sans-serif"],
+        geist_mono: ["var(--font-geist_mono)", "cursive"],
       },
     },
   },
