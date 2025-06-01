@@ -23,11 +23,11 @@ export default function FilmSlider({ films }: Props) {
   });
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center pt-16">
       {/* SLIDER */}
       <div
         ref={sliderRef}
-        className="keen-slider max-w-7xl w-full px-0 overflow-hidden"
+        className="keen-slider max-w-7xl w-full px-0 overflow-hidden transition-all duration-200 border-2 border-transparent hover:border-white"
       >
         {films.map((film) => (
           <div
@@ -43,11 +43,11 @@ export default function FilmSlider({ films }: Props) {
             />
 
             {/* Gradient zleva do transparentna */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent z-10" />
 
             {/* Textová část vlevo */}
             <div className="relative z-20 w-[35%] pl-12 text-white">
-              <h2 className="text-4xl md:text-5xl font-oswald font-bold mb-4">
+              <h2 className="text-4xl md:text-5xl font-geist font-bold mb-4">
                 {film.title}
               </h2>
               <p className="text-sm text-gray-300 mb-2">{film.release_date}</p>

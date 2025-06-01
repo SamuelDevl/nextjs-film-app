@@ -6,6 +6,9 @@ export interface Film {
   title: string;
   overview: string;
   vote_average: number;
+  vote_count: number;
+  original_language: string;
+  popularity: number;
   release_date: string;
   poster_path: string;
   backdrop_path: string;
