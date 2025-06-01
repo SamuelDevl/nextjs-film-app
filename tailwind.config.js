@@ -16,6 +16,9 @@ module.exports = {
         geist: ["var(--font-geist)", "sans-serif"],
         geist_mono: ["var(--font-geist_mono)", "cursive"],
       },
+      colors: {
+        black: "#171616",
+      },
     },
   },
   plugins: [],
