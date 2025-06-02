@@ -1,13 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import ThemeToggle from "@/app/lib/ThemeToggle";
-import { Home, Film, Star, Clapperboard } from "lucide-react";
+import ThemeToggle from "@/lib/ThemeToggle";
+import {
+  Home,
+  Film,
+  Star,
+  Clapperboard,
+  LogIn,
+  LogOut,
+  User,
+} from "lucide-react";
 import { useState, useEffect } from "react";
 import React from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -39,21 +49,21 @@ export default function Navbar() {
           Domů
         </Link>
         <Link
-          href="/filmy"
+          href="/films"
           className="flex items-center gap-2 hover:text-primary transition"
         >
           <Film className="w-4 h-4" />
           Filmy
         </Link>
         <Link
-          href="/oblibene"
+          href="/favorites"
           className="flex items-center gap-2 hover:text-primary transition"
         >
           <Star className="w-4 h-4" />
           Oblíbené
         </Link>
         <Link
-          href="/populární"
+          href="/popular"
           className="flex items-center gap-2 hover:text-primary transition"
         >
           <Star className="w-4 h-4" />
@@ -74,6 +84,24 @@ export default function Navbar() {
           Originals
         </Link>
         <ThemeToggle />
+        {status === "authenticated" ? (
+          <button
+            onClick={() => signOut()}
+            className="flex items-center gap-2 hover:text-red-500 transition"
+          >
+            <LogOut className="w-4 h-4" />
+            Odhlásit{" "}
+            {session?.user?.name && `(${session.user.name.split(" ")[0]})`}
+          </button>
+        ) : (
+          <button
+            onClick={() => signIn("google")}
+            className="flex items-center gap-2 hover:text-green-500 transition"
+          >
+            <LogIn className="w-4 h-4" />
+            Přihlásit se
+          </button>
+        )}
       </div>
     </nav>
   );

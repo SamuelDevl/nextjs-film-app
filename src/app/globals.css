@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --bg: #ffffff;
+  --bg: #e0e0e0;
   --text: #171717;
 }
 
@@ -17,4 +17,14 @@ body {
   color: var(--text);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
 

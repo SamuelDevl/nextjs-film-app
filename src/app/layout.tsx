@@ -1,10 +1,19 @@
+"use client";
+
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/NavBar";
+import Navbar from "@/components/Navbar";
+import { SessionProvider } from "next-auth/react";
 import "keen-slider/keen-slider.min.css";
 
-// layout.tsx nebo globals setup
-import { Oswald, DM_Sans, Quicksand, Permanent_Marker, Geist, Geist_Mono } from "next/font/google";
+import {
+  Oswald,
+  DM_Sans,
+  Quicksand,
+  Permanent_Marker,
+  Geist,
+  Geist_Mono,
+} from "next/font/google";
 
 export const oswald = Oswald({
   subsets: ["latin"],
@@ -18,7 +27,7 @@ export const geist = Oswald({
   variable: "--font-geist",
 });
 
-export const geist_mono = Oswald({
+export const geist_mono = Geist_Mono({
   subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-geist_mono",
@@ -53,8 +62,10 @@ export default function RootLayout({
       className={`${oswald.variable} ${geist.variable} ${geist_mono.variable} ${dmsans.variable} ${quicksand.variable} ${marker.variable}`}
     >
       <body>
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <SessionProvider>
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+        </SessionProvider>
       </body>
     </html>
   );

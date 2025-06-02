@@ -2,8 +2,13 @@
 
 import { useEffect, useState } from "react";
 import FilmSlider from "@/components/SlideCard";
-import { Film, getTopRatedFilms } from "@/components/GetFilmApi";
+import {
+  Film,
+  getTopRatedFilms,
+  getRecentUpadatedFilms,
+} from "@/components/GetFilmApi";
 import { NavigationCard } from "@/components/Navigation";
+import DiscoverSlider from "@/components/SlideDiscover";
 
 export default function HomePage() {
   const [films, setFilms] = useState<Film[]>([]);
@@ -17,7 +22,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="p-6 pt-4">
+    <main className="p-16 pt-4">
       <div>
         {loading ? (
           <p className="text-gray-500">Načítám...</p>
@@ -58,6 +63,9 @@ export default function HomePage() {
           logoSrc="/logo/net.svg"
           videoSrc="/video/vid2.mp4"
         />
+      </div>
+      <div className="pt-10">
+        <DiscoverSlider />
       </div>
     </main>
   );
